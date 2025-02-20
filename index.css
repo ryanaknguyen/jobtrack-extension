@@ -23,6 +23,12 @@ button {
   font-weight: 600;
 }
 
+#clear-button {
+  background-color: white;
+  border: 1px solid #007aff;
+  color: #007aff;
+}
+
 ul {
   list-style-type: square;
   padding-left: 25px;

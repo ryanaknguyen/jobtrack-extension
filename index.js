@@ -2,6 +2,7 @@
 let mySavedPostings = []
 const inputEl = document.getElementById("input-el")
 const buttonInput = document.getElementById("input-button")
+const clearInput = document.getElementById("clear-button")
 const postingsList = document.getElementById("postings-list")
 
 let localPostings = JSON.parse(localStorage.getItem("savedPostings"))
@@ -18,6 +19,12 @@ buttonInput.addEventListener("click", function() {
 
   // declare local storage to save input data across extension
   localStorage.setItem("savedPostings", JSON.stringify(mySavedPostings))
+  renderPostings()
+})
+
+clearInput.addEventListener("click", function() {
+  mySavedPostings = []
+  localStorage.clear()
   renderPostings()
 })
 
