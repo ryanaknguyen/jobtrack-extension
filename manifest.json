@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "version": "1.0",
+  "name": "JobTrack",
+  "description": "Save links and tabs using a dedicated job posting logger.",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "jobtrack-icon.png"
+  },
+  "icons": {
+    "16": "images/jobtrack-icon-16.png",
+    "32": "images/jobtrack-icon-32.png",
+    "48": "images/jobtrack-icon-48.png",
+    "128": "images/jobtrack-icon-128.png"
+  }
+}
