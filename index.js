@@ -23,6 +23,10 @@ tabInput.addEventListener("click", function() {
       console.error("No active tab found.");
       return;
     }
+    if (inputEl.value.length == 0) {
+      console.error("Text field is empty.");
+      return;
+    }
     
     mySavedPostings.push([inputEl.value, tabs[0].url])
     inputEl.value = ""

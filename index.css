@@ -1,8 +1,21 @@
 body {
   margin: 0;
-  padding: 10px;
   font-family: Helvetica, Arial, sans-serif;
+}
+
+#function {
+  padding: 10px;
   min-width: 400px;
+}
+
+#title-bar {
+  background-color: #007aff;
+  margin: 0;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  font-size: 15px;
 }
 
 #input-el {
