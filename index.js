@@ -1,7 +1,6 @@
 // declare an array used to store the postings and the text input
 let mySavedPostings = []
 const inputEl = document.getElementById("input-el")
-const buttonInput = document.getElementById("input-button")
 const tabInput = document.getElementById("tab-button")
 const clearInput = document.getElementById("clear-button")
 const postingsList = document.getElementById("postings-list")
@@ -13,17 +12,7 @@ if (localPostings) {
   render(mySavedPostings)
 }
 
-// add the posting to the array to save it
-buttonInput.addEventListener("click", function() {
-  mySavedPostings.push(inputEl.value)
-  inputEl.value = ""
-
-  // declare local storage to save input data across extension
-  localStorage.setItem("savedPostings", JSON.stringify(mySavedPostings))
-  render(mySavedPostings)
-})
-
-// save the url of the current tab and add it to the list
+// save the url of the current tab and the text box entry, adding it to the list
 tabInput.addEventListener("click", function() {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     if (chrome.runtime.lastError) {
@@ -34,7 +23,8 @@ tabInput.addEventListener("click", function() {
       return;
     }
     
-    mySavedPostings.push(tabs[0].url)
+    mySavedPostings.push([inputEl.value, tabs[0].url])
+    inputEl.value = ""
     localStorage.setItem("savedPostings", JSON.stringify(mySavedPostings))
     render(mySavedPostings)
   })
@@ -52,7 +42,7 @@ function render(savedPostings) {
   for (const posting of savedPostings) {
     postings += `
       <li>
-        <a target='_blank' href='${posting}'>${posting}</a>
+        <a target='_blank' href='${posting[1]}'>${posting[0]}</a>
       </li>`
   }
   postingsList.innerHTML = postings
