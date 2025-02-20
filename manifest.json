@@ -12,5 +12,8 @@
     "32": "images/jobtrack-icon-32.png",
     "48": "images/jobtrack-icon-48.png",
     "128": "images/jobtrack-icon-128.png"
-  }
+  },
+  "permissions": [
+    "tabs"
+  ]
 }

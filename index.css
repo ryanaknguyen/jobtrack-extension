@@ -27,6 +27,8 @@ button {
   background-color: white;
   border: 1px solid #007aff;
   color: #007aff;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 ul {
