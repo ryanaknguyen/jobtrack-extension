@@ -2,6 +2,7 @@
 let mySavedPostings = []
 const inputEl = document.getElementById("input-el")
 const tabInput = document.getElementById("tab-button")
+const doneInput = document.getElementById("done-button")
 const clearInput = document.getElementById("clear-button")
 const postingsList = document.getElementById("postings-list")
 
@@ -30,6 +31,20 @@ tabInput.addEventListener("click", function() {
   })
 })
 
+// clears the job postings that have already been checked off
+doneInput.addEventListener("click", function() {
+  const checkboxes = document.getElementsByName('post')
+  for(let i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      mySavedPostings.splice(i, 1)
+    } 
+  }
+
+  localStorage.setItem("savedPostings", JSON.stringify(mySavedPostings))
+  render(mySavedPostings)
+})
+
+// clears the entire list when the button is double-clicked
 clearInput.addEventListener("dblclick", function() {
   mySavedPostings = []
   localStorage.clear()
@@ -41,9 +56,15 @@ function render(savedPostings) {
   let postings = ""
   for (const posting of savedPostings) {
     postings += `
-      <li>
-        <a target='_blank' href='${posting[1]}'>${posting[0]}</a>
-      </li>`
+      <div>
+        <input type='checkbox' name='post' id='${posting[1]}'>
+        <label for='${posting[1]}'>
+          <a target='_blank' href='${posting[1]}'>
+            ${posting[0]}
+          </a>
+        </label>
+      </div>
+      `
   }
   postingsList.innerHTML = postings
 }
