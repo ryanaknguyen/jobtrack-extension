@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Inter", Helvetica, sans-serif;
 }
 
 #function {
@@ -82,7 +82,7 @@ a:hover {
 }
 
 .counter-text {
-  font-size: 15px;
-  margin-bottom: 10px;
+  font-size: 16px;
+  margin-bottom: 15px;
   font-weight: 550;
 }

@@ -33,6 +33,7 @@ if (localDate) {
     // reset daily count to 0
     localStorage.setItem("dailyCompletedApps", JSON.stringify(0))
   }
+  render(mySavedPostings)
 }
 
 localStorage.setItem("savedDate", JSON.stringify(date))
@@ -83,7 +84,7 @@ doneInput.addEventListener("click", function() {
 // clears the entire list when the button is double-clicked
 clearInput.addEventListener("dblclick", function() {
   mySavedPostings = []
-  localStorage.clear()
+  localStorage.removeItem("savedPostings")
   render(mySavedPostings)
 })
 
