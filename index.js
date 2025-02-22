@@ -29,8 +29,8 @@ if (localDate) {
   const savedMonth = savedDate.getMonth()
   const savedYear = savedDate.getFullYear()
 
+  // reset daily count to 0 if the saved day is different than the current day
   if (currentDay != savedDay || currentMonth != savedMonth || currentYear != savedYear) {
-    // reset daily count to 0
     localStorage.setItem("dailyCompletedApps", JSON.stringify(0))
   }
   render(mySavedPostings)
@@ -109,7 +109,11 @@ function render(savedPostings) {
 
   // if there are completed apps today, get that number and set it
   if (count >= 0) {
-    if (count == 1) {
+    if (count == 0) {
+      applicationCounter.innerHTML = `
+        <p class='counter-text'>You completed ${count} applications today.</p>
+      `
+    } else if (count == 1) {
       applicationCounter.innerHTML = `
         <p class='counter-text'>You completed ${count} application today!</p>
       `

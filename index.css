@@ -11,11 +11,12 @@ body {
 #title-bar {
   background-color: #007aff;
   margin: 0;
-  padding: 12px;
+  padding: 10px;
   text-align: center;
   font-weight: 600;
   color: white;
-  font-size: 15px;
+  font-size: 18px;
+  border-bottom: 2px solid #0067d4;
 }
 
 #input-el {
@@ -23,13 +24,13 @@ body {
   width: 100%;
   box-sizing: border-box;
   border: 1px solid #007aff;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 
 button {
   background-color: #007aff;
   border: none;
-  border-radius: 2px;
+  border-radius: 5px;
   color: white;
   margin-top: 5px;
   padding: 13px 20px;
@@ -52,6 +53,7 @@ button:active {
 #clear-button {
   background-color: white;
   border: 1px solid #007aff;
+  border-radius: 5px;
   color: #007aff;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -69,7 +71,8 @@ a:hover {
 .posting {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
+  padding: 1px;
 }
 
 .complete {
