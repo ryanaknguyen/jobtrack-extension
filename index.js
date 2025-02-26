@@ -63,7 +63,7 @@ tabInput.addEventListener("click", function() {
 doneInput.addEventListener("click", function() {
   const checkboxes = document.getElementsByName('post')
   let checkedCount = 0
-  for(let i = 0; i < checkboxes.length; i++) {
+  for(let i = checkboxes.length - 1; i > 0; i--) {
     if (checkboxes[i].checked) {
       mySavedPostings.splice(i, 1)
       checkedCount++
