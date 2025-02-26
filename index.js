@@ -18,7 +18,7 @@ if (localPostings) {
   render(mySavedPostings)
 }
 
-// fetch the date of the last time JobTrack has been opened and reset daily value
+// fetch the date of the last time JobTrack has been opened and reset daily value if date is different
 if (localDate) {
   const currentDay = date.getDate()
   const currentMonth = date.getMonth()
@@ -29,7 +29,6 @@ if (localDate) {
   const savedMonth = savedDate.getMonth()
   const savedYear = savedDate.getFullYear()
 
-  // reset daily count to 0 if the saved day is different than the current day
   if (currentDay != savedDay || currentMonth != savedMonth || currentYear != savedYear) {
     localStorage.setItem("dailyCompletedApps", JSON.stringify(0))
   }
@@ -83,27 +82,60 @@ doneInput.addEventListener("click", function() {
 
 // clears the entire list when the button is double-clicked
 clearInput.addEventListener("dblclick", function() {
+  clearInput.innerHTML = `CLEAR ALL`
   mySavedPostings = []
   localStorage.removeItem("savedPostings")
   render(mySavedPostings)
 })
 
+clearInput.addEventListener("click", function() {
+  clearInput.innerHTML = `DOUBLE CLICK`
+  setTimeout(function() {
+    clearInput.innerHTML = `CLEAR ALL`
+  }, 1000)
+})
+
 // display the list of postings
 function render(savedPostings) {
-  let postings = ""
-  for (const posting of savedPostings) {
-    postings += `
-      <div class='posting'>
-        <input type='checkbox' name='post' id='${posting[1]}' class='complete'>
-        <label for='${posting[1]}'>
-          <a target='_blank' href='${posting[1]}'>
-            ${posting[0]}
-          </a>
-        </label>
-      </div>
-      `
-  }
-  postingsList.innerHTML = postings
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    if (chrome.runtime.lastError) {
+      console.error(chrome.runtime.lastError)
+    }
+    if (!tabs || tabs.length === 0) {
+      console.error("No active tab found.")
+      return
+    }
+
+    let currentSite = tabs[0].url
+
+    let postings = ""
+    for (const posting of savedPostings) {
+      if (posting[1] == currentSite) {
+        postings += `
+        <div class='posting'>
+          <input type='checkbox' name='post' id='${posting[1]}' class='complete'>
+          <label for='${posting[1]}'>
+            <a target='_blank' href='${posting[1]}'>
+              <strong>${posting[0]} (currently viewing)</strong>
+            </a>
+          </label>
+        </div>
+        `
+      } else {
+        postings += `
+        <div class='posting'>
+          <input type='checkbox' name='post' id='${posting[1]}' class='complete'>
+          <label for='${posting[1]}'>
+            <a target='_blank' href='${posting[1]}'>
+              ${posting[0]}
+            </a>
+          </label>
+        </div>
+        `
+      }
+    }
+    postingsList.innerHTML = postings
+  })
 
   const count = JSON.parse(localStorage.getItem("dailyCompletedApps"))
 

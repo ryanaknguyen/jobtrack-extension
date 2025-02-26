@@ -17,6 +17,44 @@ body {
   color: white;
   font-size: 18px;
   border-bottom: 2px solid #0067d4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 400px;
+}
+
+#title-bar p {
+  margin: 0;
+}
+
+#title-bar a {
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#title-bar a:hover {
+  text-decoration: none;
+}
+
+#help-information {
+  padding: 10px;
+}
+
+#help-information h1 {
+  font-size: 18px;
+  text-align: center;
+}
+
+#help-information p {
+  margin-top: 5px;
+}
+
+#help-information ol {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 #input-el {
